@@ -95,6 +95,7 @@ public class VarastoTest {
     public void oikeaMerkkijono() {
         varasto = new Varasto(10);
         assertEquals(varasto.toString(), "saldo = " + varasto.getSaldo() + ", vielä tilaa " + varasto.paljonkoMahtuu());
+        assertEquals(varasto.toString(), "virhe");
     }
 
 }
