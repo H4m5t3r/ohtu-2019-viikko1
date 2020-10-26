@@ -13,29 +13,49 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto varasto2;
+    Varasto varasto3;
+    Varasto varasto4;
+    Varasto varasto5;
     double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
         varasto = new Varasto(10);
+        varasto2 = new Varasto(10, 5);
+        varasto3 = new Varasto(-15);
+        varasto4 = new Varasto(-15, -3);
+        varasto5 = new Varasto(-4, 18);
     }
 
     @Test
     public void konstruktoriLuoTyhjanVaraston() {
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+        assertEquals(5, varasto2.getSaldo(), vertailuTarkkuus);
+        assertEquals(0, varasto3.getSaldo(), vertailuTarkkuus);
+        assertEquals(0, varasto4.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
     public void uudellaVarastollaOikeaTilavuus() {
         assertEquals(10, varasto.getTilavuus(), vertailuTarkkuus);
+        assertEquals(10, varasto2.getTilavuus(), vertailuTarkkuus);
+        assertEquals(0, varasto3.getTilavuus(), vertailuTarkkuus);
+        assertEquals(0, varasto4.getTilavuus(), vertailuTarkkuus);
+        assertEquals(0, varasto5.getTilavuus(), vertailuTarkkuus);
     }
 
     @Test
     public void lisaysLisaaSaldoa() {
         varasto.lisaaVarastoon(8);
+        varasto.lisaaVarastoon(-25);
 
         // saldon pitäisi olla sama kun lisätty määrä
         assertEquals(8, varasto.getSaldo(), vertailuTarkkuus);
+        assertEquals(8, varasto.getSaldo(), vertailuTarkkuus);
+        
+        varasto.lisaaVarastoon(250);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
@@ -53,6 +73,12 @@ public class VarastoTest {
         double saatuMaara = varasto.otaVarastosta(2);
 
         assertEquals(2, saatuMaara, vertailuTarkkuus);
+        
+        varasto.otaVarastosta(-15);
+        assertEquals(6, varasto.getSaldo(), vertailuTarkkuus);
+        
+        varasto.otaVarastosta(500);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
@@ -63,6 +89,12 @@ public class VarastoTest {
 
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void oikeaMerkkijono() {
+        varasto = new Varasto(10);
+        assertEquals(varasto.toString(), "saldo = " + varasto.getSaldo() + ", vielä tilaa " + varasto.paljonkoMahtuu());
     }
 
 }
