@@ -31,9 +31,14 @@ public class VarastoTest {
     @Test
     public void konstruktoriLuoTyhjanVaraston() {
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
-        assertEquals(5, varasto2.getSaldo(), vertailuTarkkuus);
         assertEquals(0, varasto3.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriAntaaOikeanSaldon() {
+        assertEquals(5, varasto2.getSaldo(), vertailuTarkkuus);
         assertEquals(0, varasto4.getSaldo(), vertailuTarkkuus);
+        assertEquals(-4, varasto5.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
