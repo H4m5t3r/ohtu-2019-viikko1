@@ -1,6 +1,7 @@
 plugins {
     id 'application' 
     id 'jacoco'
+    id 'checkstyle'
 }
 
 repositories {
@@ -34,4 +35,12 @@ jacocoTestReport {
         }))
     }
 }
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
 
