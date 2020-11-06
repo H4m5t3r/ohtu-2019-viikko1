@@ -23,19 +23,6 @@ public class Varasto {
             this.tilavuus = 0.0;  // => käyttökelvoton varasto
         }
         
-        if (alkuSaldo == 0)
-        {
-            if (alkuSaldo == 1) {
-                if (alkuSaldo == 2) {
-                    this.saldo = 0;
-                }
-            }
-        }
-        for( int i=0; i<1; i++ ) {
-            for( int j=0; i<j; j++ ) {
-            }
-        }
-        
         tarkistaSaldo(alkuSaldo);
     }
     
